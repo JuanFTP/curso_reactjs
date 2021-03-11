@@ -3,7 +3,6 @@
 	padding: 0px;
 	font-family: 'Roboto', sans-serif;
 	user-select: none;
-	cursor: none;
 }
 
 body {
@@ -29,3 +28,40 @@ body {
 	padding: 24px 16px;
 	background-color: rgb(12, 11, 17);
 }
+
+.numbers,
+.math-operations {
+	display: inline-block;
+}
+
+.numbers {
+	width: 240px;
+	min-height: 80px;
+	background-color: rgb(26, 25, 31);
+}
+
+.math-operations {
+	width: 80px;
+	min-height: 80px;
+	background-color: rgb(47, 46, 51);
+}
+
+	button {
+		cursor: pointer;
+		outline: none;
+		border: none;
+		display: inline-block;
+		text-align: center;
+		height: 80px;
+		width: 80px;
+		font-size: 24px;
+		background-color: transparent;
+	}
+
+	button.number {
+		color: yellow;
+	}
+
+	button.operation {
+		color: turquoise;
+	}

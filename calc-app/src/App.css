@@ -29,8 +29,14 @@ body {
 	background-color: rgb(12, 11, 17);
 }
 
+.grid-left {
+	float: left;
+	width: 240px;
+}
+
 .numbers,
-.math-operations {
+.math-operations,
+.functions {
 	display: inline-block;
 }
 
@@ -44,6 +50,13 @@ body {
 	width: 80px;
 	min-height: 80px;
 	background-color: rgb(47, 46, 51);
+}
+
+.functions {
+	text-align: left;
+	width: 240px;
+	min-height: 80px;
+	background-color: rgb(15, 11, 34);
 }
 
 	button {
@@ -64,4 +77,8 @@ body {
 
 	button.operation {
 		color: turquoise;
+	}
+
+	button.function {
+		color: red;
 	}

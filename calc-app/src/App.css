@@ -19,16 +19,16 @@ body {
 	margin: 40px auto;
 	border-radius: 8px;
 	overflow: hidden;
+	background: rgba(255, 255, 255, 0.5);
+	backdrop-filter: blur(10px);
 }
 
 .result {
 	display: block;
 	text-align: right;
 	font-size: 24px;
-	color: orange;
 	padding: 24px 16px;
 	height: 77px;
-	background-color: rgb(12, 11, 17);
 }
 
 .grid-left {
@@ -45,26 +45,26 @@ body {
 .numbers {
 	width: 240px;
 	min-height: 80px;
-	background-color: rgb(26, 25, 31);
+	background-color: rgba(224, 224, 224, 1);
 }
 
 .math-operations {
 	width: 80px;
 	min-height: 80px;
-	background-color: rgb(47, 46, 51);
+	background-color: rgba(174, 176, 236, 1);
 }
 
 .functions {
 	text-align: left;
 	width: 240px;
 	min-height: 80px;
-	background-color: rgb(15, 11, 34);
+	background-color: rgba(236, 174, 174, 1);
 }
 
 	button {
 		cursor: pointer;
 		outline: none;
-		border: none;
+		border: solid 2px transparent;
 		display: inline-block;
 		text-align: center;
 		height: 80px;
@@ -74,19 +74,7 @@ body {
 		transition: all ease 500ms;
 	}
 
-	button.number {
-		color: yellow;
-	}
-
-	button.operation {
-		color: turquoise;
-	}
-
-	button.function {
-		color: red;
-	}
-
 	button:hover {
-		color: blue;
-		background-color:rgba(255, 255, 255, 0.08);
+		border: solid 2px rgba(0, 0, 0, 0.04);
+		background-color:rgba(0, 0, 0, 0.04);
 	}

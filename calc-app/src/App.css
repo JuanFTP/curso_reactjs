@@ -3,6 +3,7 @@
 	padding: 0px;
 	font-family: 'Roboto', sans-serif;
 	user-select: none;
+	box-sizing: border-box;
 }
 
 body {
@@ -26,6 +27,7 @@ body {
 	font-size: 24px;
 	color: orange;
 	padding: 24px 16px;
+	height: 77px;
 	background-color: rgb(12, 11, 17);
 }
 
@@ -69,6 +71,7 @@ body {
 		width: 80px;
 		font-size: 24px;
 		background-color: transparent;
+		transition: all ease 500ms;
 	}
 
 	button.number {
@@ -81,4 +84,9 @@ body {
 
 	button.function {
 		color: red;
+	}
+
+	button:hover {
+		color: blue;
+		background-color:rgba(255, 255, 255, 0.08);
 	}

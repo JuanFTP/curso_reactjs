@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "react-calculator-test",
+    "react-calculator-app": "react-calculator-test"
+  }
+}

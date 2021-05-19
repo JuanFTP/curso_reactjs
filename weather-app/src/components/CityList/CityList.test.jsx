@@ -1,10 +1,6 @@
 import React from 'react';
+import { render } from '@testing-library/react';
 import CityList from './CityList';
-
-export default {
-	title: "CityList",
-	component: CityList
-};
 
 const cities = [
 	{ city: "Buenos Aires", country: "Argentina" },
@@ -12,5 +8,10 @@ const cities = [
 	{ city: "Madrid", country: "España" },
 	{ city: "Ciudad de México", country: "México" }
 ];
+test("CityList renders", async () => {
+	// AAA Arrange Act Assert
+	const { findAllByRole } = render(<CityList cities={cities} />);
+	const items = await findAllByRole("listitem");
 
-export const CityListExample = () => <CityList cities={cities} />;
+	expect(items).toHaveLength(4);
+});

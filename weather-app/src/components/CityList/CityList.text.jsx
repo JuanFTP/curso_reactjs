@@ -1,3 +1,0 @@
-test("CityList renders", async () => {
-
-});

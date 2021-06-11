@@ -1,0 +1,3 @@
+test("ForecastItem test", async () => {
+
+});

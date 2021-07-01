@@ -1,0 +1,17 @@
+46a6b61 JFTP | 170. Creación de componente IconState
+5a49082 JFTP | 163. Agrego evento click item a componente CityList
+32a5f50 JFTP | Lección 159. Agrego Grid a componente CityList - testeo visual
+a928ee0 JFTP | Lección 154. Feedback
+548a17e JFTP | Lección 148. Creación de componente CityList y estructura
+9e06c63 Lección 147. Creación de componente Weather con test y stories
+768f921 Lección 139. Feedback
+f8ea779 Lección 129. Creación de la aplicación
+2a70d5f Lección 127. useEffect en acción!
+b02af68 Lección 119. Feedback
+63c00d3 Lección 110. CORRECCIÓN Build de la aplicación
+dd8680f Lección 110. Build de la aplicación
+cbbb2ec Lección 80. Feedback
+eb0a7ee Lección 69. Creación de componente Funcions
+6cb8507 Lección 65. Creación de componente
+3813620 Lección 45. Orden de renderización y Debugger
+1b62cd9 Initial commit

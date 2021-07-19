@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import CityInfo from './../CityInfo';
 import Weather from './../Weather';
 
@@ -8,7 +10,10 @@ import Weather from './../Weather';
 const renderCityAndCountry = eventOnClickCity => cityAndCountry => {
 	const { city, country } = cityAndCountry;
 	return (
-		<li key={city} onClick={eventOnClickCity}>
+		<ListItem
+			button
+			key={city}
+			onClick={eventOnClickCity}>
 			<Grid container
 				justify="center"
 				alignItems="center">
@@ -24,16 +29,16 @@ const renderCityAndCountry = eventOnClickCity => cityAndCountry => {
 					<Weather temperature={10} state={"sunny"} />
 				</Grid>
 			</Grid>
-		</li>
+		</ListItem>
 	);
 };
 
 // cities: es un array, y en cada item tiene que tener la ciudad pero además, el country
 const CityList = ({ cities, onClickCity }) => {
 	return (
-		<ul>
+		<List>
 			{cities.map(cityAndCountry => renderCityAndCountry(onClickCity)(cityAndCountry))}
-		</ul>
+		</List>
 	)
 }
 

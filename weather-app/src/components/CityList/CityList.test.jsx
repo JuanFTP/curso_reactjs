@@ -12,7 +12,7 @@ const cities = [
 test("CityList renders", async () => {
 	// AAA Arrange Act Assert
 	const { findAllByRole } = render(<CityList cities={cities} onClickCity={() => { }} />);
-	const items = await findAllByRole("listitem");
+	const items = await findAllByRole("button");
 
 	expect(items).toHaveLength(4);
 });

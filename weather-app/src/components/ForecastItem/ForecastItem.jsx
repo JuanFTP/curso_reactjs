@@ -36,7 +36,6 @@ ForecastItem.propTypes = {
 	state: PropTypes.oneOf(validValues).isRequired,
 	weekDay: PropTypes.string.isRequired,
 	hour: PropTypes.number.isRequired,
-	state: PropTypes.string.isRequired,
 	temperature: PropTypes.number.isRequired
 };
 

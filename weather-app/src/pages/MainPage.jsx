@@ -1,6 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import AppFrame from './../components/AppFrame';
 import CityList from './../components/CityList';
+import Paper from '@material-ui/core/Paper';
 
 const MainPage = () => {
 	const history = useHistory();
@@ -17,10 +19,11 @@ const MainPage = () => {
 	];
 
 	return (
-		<div>
-			<h2>Lista de ciudades</h2>
-			<CityList cities={cities} onClickCity={onClickHandler}></CityList>
-		</div>
+		<AppFrame>
+			<Paper elevation={4}>
+				<CityList cities={cities} onClickCity={onClickHandler}></CityList>
+			</Paper>
+		</AppFrame>
 	);
 };
 

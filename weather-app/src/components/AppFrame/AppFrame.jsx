@@ -12,7 +12,7 @@ import { WiDaySunny } from "react-icons/wi";
 
 const AppFrame = ({ children }) => {
 	return (
-		<Grid container justify="center">
+		<Grid container justifyContent="center">
 			<AppBar position="static">
 				<Toolbar variant="dense">
 					<IconButton color="inherit" aria-label="menu">

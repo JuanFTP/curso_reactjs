@@ -55,11 +55,11 @@ const CityPage = () => {
 	return (
 		<AppFrame>
 			<Paper elevation={4}>
-				<Grid container justify="space-around" direction="column">
+				<Grid container justifyContent="space-around" direction="column">
 					<Grid
 						item
 						container
-						justify="center"
+						justifyContent="center"
 						alignItems="flex-end"
 						xs={12}
 					>
@@ -70,7 +70,7 @@ const CityPage = () => {
 						/>
 					</Grid>
 
-					<Grid item container justify="center" xs={12}>
+					<Grid item container justifyContent="center" xs={12}>
 						<Weather state={state} temperature={temperature} />
 						<WeatherDetails humidity={humidity} wind={wind} />
 					</Grid>

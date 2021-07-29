@@ -1,16 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import { IconContext } from 'react-icons';
-import IconState, { validValues } from './../IconState';
+import React from "react";
+import PropTypes from "prop-types";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import { IconContext } from "react-icons";
+import IconState, { validValues } from "./../IconState";
 
 const ForecastItem = ({ weekDay, hour, state, temperature }) => {
 	return (
-		<Grid container
-			direction="column"
-			justify="center"
-			alignItems="center">
+		<Grid container direction="column" justify="center" alignItems="center">
 			<Grid item>
 				<Typography>{weekDay}</Typography>
 			</Grid>
@@ -20,7 +17,7 @@ const ForecastItem = ({ weekDay, hour, state, temperature }) => {
 			</Grid>
 
 			<Grid item>
-				<IconContext.Provider value={{ size: '5em' }}>
+				<IconContext.Provider value={{ size: "5em" }}>
 					<IconState state={state} />
 				</IconContext.Provider>
 			</Grid>
@@ -36,7 +33,7 @@ ForecastItem.propTypes = {
 	state: PropTypes.oneOf(validValues).isRequired,
 	weekDay: PropTypes.string.isRequired,
 	hour: PropTypes.number.isRequired,
-	temperature: PropTypes.number.isRequired
+	temperature: PropTypes.number.isRequired,
 };
 
 export default ForecastItem;

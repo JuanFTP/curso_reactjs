@@ -1,9 +1,9 @@
-import React from 'react';
-import ForecastChart from './ForecastChart';
+import React from "react";
+import ForecastChart from "./ForecastChart";
 
 export default {
 	title: "ForecastChart",
-	component: ForecastChart
+	component: ForecastChart,
 };
 /*
 	Día y hora "DDD-HH"
@@ -15,30 +15,28 @@ const data = [
 	{
 		dayHour: "Jue 18",
 		min: 14,
-		max: 22
+		max: 22,
 	},
 	{
 		dayHour: "Vie 06",
 		min: 18,
-		max: 27
+		max: 27,
 	},
 	{
 		dayHour: "Vie 12",
 		min: 14,
-		max: 21
+		max: 21,
 	},
 	{
 		dayHour: "Vie 18",
 		min: 11,
-		max: 14
+		max: 14,
 	},
 	{
 		dayHour: "Sab 00",
 		min: 17,
-		max: 28
-	}
+		max: 28,
+	},
 ];
 
-export const ForecastChartExample = () => (
-	<ForecastChart data={data} />
-);
+export const ForecastChartExample = () => <ForecastChart data={data} />;

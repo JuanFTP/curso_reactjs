@@ -1,6 +1,6 @@
-import React from 'react';
-import Weather from './Weather';
-import { render } from '@testing-library/react';
+import React from "react";
+import Weather from "./Weather";
+import { render } from "@testing-library/react";
 
 test("Weather cloudy", async () => {
 	const { findByRole } = render(<Weather temperature={10} state="cloudy" />);

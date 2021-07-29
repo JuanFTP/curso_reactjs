@@ -1,1 +1,1 @@
-export { default } from './ForecastChart';
+export { default } from "./ForecastChart";

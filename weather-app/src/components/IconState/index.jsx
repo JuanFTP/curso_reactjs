@@ -1,1 +1,1 @@
-export { default, validValues } from './IconState';
+export { default, validValues } from "./IconState";

@@ -1,9 +1,9 @@
-import React from 'react';
-import Forecast from './Forecast';
+import React from "react";
+import Forecast from "./Forecast";
 
 export default {
 	title: "Forecast",
-	component: Forecast
+	component: Forecast,
 };
 
 const forecastItemList = [
@@ -13,7 +13,9 @@ const forecastItemList = [
 	{ weekDay: "Miércoles", hour: 9, state: "rain", temperature: 19 },
 	{ weekDay: "Jueves", hour: 10, state: "fog", temperature: 12 },
 	{ weekDay: "Viernes", hour: 11, state: "fog", temperature: 12 },
-	{ weekDay: "Sábado", hour: 12, state: "cloud", temperature: 15 }
+	{ weekDay: "Sábado", hour: 12, state: "cloud", temperature: 15 },
 ];
 
-export const ForecastExample = () => (<Forecast forecastItemList={forecastItemList} />)
+export const ForecastExample = () => (
+	<Forecast forecastItemList={forecastItemList} />
+);

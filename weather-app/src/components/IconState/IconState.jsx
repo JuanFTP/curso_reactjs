@@ -1,30 +1,30 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { WiCloud, WiDayCloudy, WiDayFog, WiDaySunny, WiDayRain } from 'react-icons/wi';
+import React from "react";
+import PropTypes from "prop-types";
+import {
+	WiCloud,
+	WiDayCloudy,
+	WiDayFog,
+	WiDaySunny,
+	WiDayRain,
+} from "react-icons/wi";
 
-export const validValues = [
-	"cloud",
-	"cloudy",
-	"fog",
-	"sunny",
-	"rain"
-];
+export const validValues = ["cloud", "cloudy", "fog", "sunny", "rain"];
 
 const stateByName = {
 	cloud: WiCloud,
 	cloudy: WiDayCloudy,
 	fog: WiDayFog,
 	sunny: WiDaySunny,
-	rain: WiDayRain
+	rain: WiDayRain,
 };
 
 const IconState = ({ state }) => {
 	const StateByName = stateByName[state];
-	return (<StateByName />);
+	return <StateByName />;
 };
 
 IconState.propTypes = {
-	state: PropTypes.oneOf(validValues).isRequired
+	state: PropTypes.oneOf(validValues).isRequired,
 };
 
 export default IconState;

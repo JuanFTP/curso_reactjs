@@ -1,6 +1,6 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import WeatherDetails from './WeatherDetails';
+import React from "react";
+import { render } from "@testing-library/react";
+import WeatherDetails from "./WeatherDetails";
 
 test("WeatherDetails render", async () => {
 	const { findByText } = render(<WeatherDetails humidity={10} wind={9} />);

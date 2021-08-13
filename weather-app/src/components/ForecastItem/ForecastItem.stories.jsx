@@ -1,10 +1,12 @@
 import React from "react";
 import ForecastItem from "./ForecastItem";
 
-export default {
+const historyForecastItem = {
 	title: "ForecastItem",
-	component: ForecastItem,
+	component: ForecastItem
 };
+
+export default historyForecastItem;
 
 export const lunesSoleado = () => {
 	return (

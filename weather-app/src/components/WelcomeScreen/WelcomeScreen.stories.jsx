@@ -1,9 +1,15 @@
 import React from "react";
 import WelcomeScreen from "./WelcomeScreen";
 
-export default {
+const historyWelcomeScreen = {
 	title: "WelcomeScreen",
-	component: WelcomeScreen,
+	component: WelcomeScreen
 };
 
-export const WelcomeScreenExample = () => <WelcomeScreen></WelcomeScreen>;
+export default historyWelcomeScreen;
+
+export const WelcomeScreenExample = () => (
+	<WelcomeScreen>
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda deserunt modi labore similique impedit aperiam culpa, adipisci libero! Accusamus reiciendis possimus, fugiat eaque a ea minus esse aliquam culpa libero.
+	</WelcomeScreen>
+);

@@ -1,10 +1,12 @@
 import React from "react";
 import Weather from "./Weather";
 
-export default {
+const historyWeather = {
 	title: "Weather",
-	component: Weather,
+	component: Weather
 };
+
+export default historyWeather;
 
 export const WeatherSunny = () => <Weather temperature={28} state="sunny" />;
 

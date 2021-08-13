@@ -4,3 +4,16 @@
 	padding: 0;
 	font-family: "Roboto", "Helvetica Neue", sans-serif;
 }
+
+.full {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.highlight {
+	height: 170px;
+	background-color: white;
+}

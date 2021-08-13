@@ -1,10 +1,13 @@
 import React from "react";
 import ForecastChart from "./ForecastChart";
 
-export default {
+const historyForecastChart = {
 	title: "ForecastChart",
-	component: ForecastChart,
+	component: ForecastChart
 };
+
+export default historyForecastChart;
+
 /*
 	Día y hora "DDD-HH"
 	Tres posiciones para el día y dos para la hora

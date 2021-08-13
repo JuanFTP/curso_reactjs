@@ -1,10 +1,12 @@
 import React from "react";
 import Forecast from "./Forecast";
 
-export default {
+const historyForecast = {
 	title: "Forecast",
-	component: Forecast,
+	component: Forecast
 };
+
+export default historyForecast;
 
 const forecastItemList = [
 	{ weekDay: "Domingo", hour: 6, state: "sunny", temperature: 23 },

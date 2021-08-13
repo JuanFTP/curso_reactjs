@@ -2,10 +2,12 @@ import React from "react";
 import "typeface-roboto";
 import CityInfo from "./CityInfo";
 
-export default {
+const historyCityInfo = {
 	title: "CityInfo",
-	component: CityInfo,
+	component: CityInfo
 };
+
+export default historyCityInfo;
 
 export const CityExample = () => (
 	<CityInfo city={"Buenos Aires"} country={"Argentina"}></CityInfo>

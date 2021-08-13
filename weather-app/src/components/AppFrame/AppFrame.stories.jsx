@@ -2,10 +2,12 @@ import React from "react";
 import AppFrame from "./AppFrame";
 import { BrowserRouter as Router } from "react-router-dom";
 
-export default {
+const historyAppFrame = {
 	title: "AppFrame",
-	component: AppFrame,
+	component: AppFrame
 };
+
+export default historyAppFrame;
 
 export const AppFrameExample = () => (
 	<Router>

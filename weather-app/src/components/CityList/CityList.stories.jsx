@@ -2,10 +2,12 @@ import React from "react";
 import CityList from "./CityList";
 import { action } from "@storybook/addon-actions";
 
-export default {
+const historyCityList = {
 	title: "CityList",
-	component: CityList,
+	component: CityList
 };
+
+export default historyCityList;
 
 const cities = [
 	{ city: "Buenos Aires", country: "Argentina" },

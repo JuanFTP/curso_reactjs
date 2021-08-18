@@ -3,7 +3,7 @@ import Weather from "./Weather";
 import { render } from "@testing-library/react";
 
 test("Weather cloudy", async () => {
-	const { findByRole } = render(<Weather temperature={10} state="cloudy" />);
+	const { findByRole } = render(<Weather temperature={10} state="clouds" />);
 
 	const temp = await findByRole("heading");
 

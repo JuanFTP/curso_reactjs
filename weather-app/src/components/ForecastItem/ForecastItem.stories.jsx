@@ -13,7 +13,7 @@ export const lunesSoleado = () => {
 		<ForecastItem
 			weekDay={"Lunes"}
 			hour={10}
-			state={"sunny"}
+			state={"clear"}
 			temperature={23}
 		></ForecastItem>
 	);
@@ -24,7 +24,7 @@ export const martesLluvioso = () => {
 		<ForecastItem
 			weekDay={"Martes"}
 			hour={19}
-			state={"rain"}
+			state={"clouds"}
 			temperature={18}
 		></ForecastItem>
 	);
@@ -35,7 +35,7 @@ export const miercolesNublado = () => {
 		<ForecastItem
 			weekDay={"Martes"}
 			hour={15}
-			state={"cloudy"}
+			state={"rain"}
 			temperature={15}
 		></ForecastItem>
 	);
@@ -46,7 +46,7 @@ export const juevesNubladisimo = () => {
 		<ForecastItem
 			weekDay={"Martes"}
 			hour={8}
-			state={"cloud"}
+			state={"snow"}
 			temperature={12}
 		></ForecastItem>
 	);
@@ -57,7 +57,7 @@ export const viernesBrumoso = () => {
 		<ForecastItem
 			weekDay={"Martes"}
 			hour={14}
-			state={"fog"}
+			state={"snow"}
 			temperature={21}
 		></ForecastItem>
 	);

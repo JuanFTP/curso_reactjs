@@ -8,6 +8,6 @@ const historyWeather = {
 
 export default historyWeather;
 
-export const WeatherSunny = () => <Weather temperature={28} state="sunny" />;
+export const WeatherSunny = () => <Weather temperature={28} state="clear" />;
 
-export const WeatherCloud = () => <Weather temperature={15} state="cloud" />;
+export const WeatherCloud = () => <Weather temperature={15} state="clouds" />;

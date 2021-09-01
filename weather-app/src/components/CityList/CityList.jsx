@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from 'axios';
+import convertUnits from 'convert-units';
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -18,9 +19,7 @@ const renderCityAndCountry = (eventOnClickCity) => (cityAndCountry, weather) => 
 					<CityInfo city={city} country={country} />
 				</Grid>
 				<Grid item md={3} xs={12}>
-					{
-						weather ? (<Weather temperature={weather.temperature} state={weather.state} />) : "Sin información para mostrar"
-					}
+					<Weather temperature={weather && weather.temperature} state={weather && weather.state} />
 				</Grid>
 			</Grid>
 		</ListItem>
@@ -46,7 +45,7 @@ const CityList = ({ cities, onClickCity }) => {
 			axios.get(url)
 				.then(response => {
 					const { data } = response;
-					const temperature = data.main.temp;
+					const temperature = Number(convertUnits(data.main.temp).from("K").to("C").toFixed(0));
 					const state = data.weather[0].main.toLowerCase();
 
 					const propName = [`${city}-${country}`];
@@ -55,6 +54,17 @@ const CityList = ({ cities, onClickCity }) => {
 					/*Se "desensambla" el objeto y se le "suman" lo nuevo*/
 					/*set[VARIABLE_ESTADO](VARIABLE_ESTADO => VARIABLE_ESTADO+1)*/
 					setAllWeather(allWeather => ({ ...allWeather, [propName]: propValue }));
+				})
+				.catch(error => {
+					if (error.response) { // Errores que nos responde el server
+						const { data, status } = error.response;
+						console.log(data);
+						console.log(status);
+					} else if (error.request) { // Errores que suceden por no llegar al server
+						console.log("Server inaccesible o no tengo internet");
+					} else { // Errores imprevistos
+						console.log("Errores imprevistos");
+					}
 				});
 		};
 

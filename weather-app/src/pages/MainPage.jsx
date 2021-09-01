@@ -20,6 +20,7 @@ const MainPage = () => {
 
 	return (
 		<AppFrame>
+			<br></br>
 			<Paper elevation={4}>
 				<CityList
 					cities={cities}

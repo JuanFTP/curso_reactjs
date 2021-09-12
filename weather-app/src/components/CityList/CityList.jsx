@@ -2,18 +2,21 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from 'axios';
 import convertUnits from 'convert-units';
+import Alert from '@material-ui/lab/Alert';
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import CityInfo from "./../CityInfo";
 import Weather from "./../Weather";
 
+const getCityCode = (city, countryCode) => `${city}-${countryCode}`;
+
 // renderCityAndCountry se va a converir en una función que retorna otra función
 const renderCityAndCountry = (eventOnClickCity) => (cityAndCountry, weather) => {
-	const { city, country } = cityAndCountry;
+	const { city, countryCode, country } = cityAndCountry;
 
 	return (
-		<ListItem button key={city} onClick={eventOnClickCity}>
+		<ListItem button key={getCityCode(city, countryCode)} onClick={eventOnClickCity}>
 			<Grid container justifyContent="center" alignItems="center">
 				<Grid item md={9} xs={12}>
 					<CityInfo city={city} country={country} />
@@ -37,48 +40,54 @@ const CityList = ({ cities, onClickCity }) => {
 		}
 	*/
 	const [allWeather, setAllWeather] = useState({});
+	const [error, setError] = useState();
+
 	useEffect(() => {
-		const setWeather = (city, country, countryCode) => {
+		const setWeather = async (city, countryCode) => {
 			const apiKey = "d3855f74ff7df3c088db301ff3a359cb";
 			const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${apiKey}`;
 
-			axios.get(url)
-				.then(response => {
-					const { data } = response;
-					const temperature = Number(convertUnits(data.main.temp).from("K").to("C").toFixed(0));
-					const state = data.weather[0].main.toLowerCase();
+			try {
+				const response = await axios.get(url);
 
-					const propName = [`${city}-${country}`];
-					const propValue = { temperature, state };
+				const { data } = response;
+				const temperature = Number(convertUnits(data.main.temp).from("K").to("C").toFixed(0));
+				const state = data.weather[0].main.toLowerCase();
 
-					/*Se "desensambla" el objeto y se le "suman" lo nuevo*/
-					/*set[VARIABLE_ESTADO](VARIABLE_ESTADO => VARIABLE_ESTADO+1)*/
-					setAllWeather(allWeather => ({ ...allWeather, [propName]: propValue }));
-				})
-				.catch(error => {
-					if (error.response) { // Errores que nos responde el server
-						const { data, status } = error.response;
-						console.log(data);
-						console.log(status);
-					} else if (error.request) { // Errores que suceden por no llegar al server
-						console.log("Server inaccesible o no tengo internet");
-					} else { // Errores imprevistos
-						console.log("Errores imprevistos");
-					}
-				});
+				const propName = getCityCode(city, countryCode);
+				const propValue = { temperature, state };
+
+				//Se "desensambla" el objeto y se le "suman" lo nuevo
+				//set[VARIABLE_ESTADO](VARIABLE_ESTADO => VARIABLE_ESTADO+1)
+				setAllWeather(allWeather => ({ ...allWeather, [propName]: propValue }));
+			} catch (error) {
+				if (error.response) { // Errores que nos responde el server
+					// const { data, status } = error.response;
+					setError("Ha ocurrido un error en el servidor del clima");
+				} else if (error.request) { // Errores que suceden por no llegar al server
+					setError("Verifica tu conexión a internet");
+				} else { // Errores imprevistos
+					setError("Error al cargar los datos")
+				}
+			}
 		};
 
-		cities.forEach(({ city, country, countryCode }) => {
-			setWeather(city, country, countryCode);
+		cities.forEach(({ city, countryCode }) => {
+			setWeather(city, countryCode);
 		});
 	}, [cities]);
 
 	return (
-		<List>
+		<div>
 			{
-				cities.map((cityAndCountry) => renderCityAndCountry(onClickCity)(cityAndCountry, allWeather[`${cityAndCountry.city}-${cityAndCountry.country}`]))
+				error && <Alert severity="error" onClose={() => setError(null)}>{error}</Alert>
 			}
-		</List>
+			<List>
+				{
+					cities.map((cityAndCountry) => renderCityAndCountry(onClickCity)(cityAndCountry, allWeather[getCityCode(cityAndCountry.city, cityAndCountry.countryCode)]))
+				}
+			</List>
+		</div>
 	);
 };
 

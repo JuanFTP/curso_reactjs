@@ -16,6 +16,7 @@ const MainPage = () => {
 		{ city: "Bogotá", country: "Colombia", countryCode: "CO" },
 		{ city: "Madrid", country: "España", countryCode: "ES" },
 		{ city: "Ciudad de México", country: "México", countryCode: "MX" },
+		{ city: "Sonora", country: "México", countryCode: "MX"}
 	];
 
 	return (

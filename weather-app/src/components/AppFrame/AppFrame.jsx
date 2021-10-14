@@ -30,7 +30,7 @@ const AppFrame = ({ children }) => {
 					<Typography variant="h6">Weather App</Typography>
 				</Toolbar>
 			</AppBar>
-			<Grid item xs={12} sm={11} md={10} lg={8}>
+			<Grid item xs={12} sm={11} md={10} lg={10}>
 				{children}
 			</Grid>
 		</Grid>

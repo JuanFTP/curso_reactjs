@@ -6,23 +6,24 @@ import Paper from "@material-ui/core/Paper";
 
 const MainPage = () => {
 	const history = useHistory();
-	const onClickHandler = () => {
+	const onClickHandler = (city, countryCode) => {
 		// history.push permite alterar la URL del navegador por programación
-		history.push("/city");
+		history.push(`/city/${countryCode}/${city}`);
 	};
 
 	const cities = [
+		{ city: "San Andrés Tuxtla", country: "México", countryCode: "MX" },
+		{ city: "Ciudad de México", country: "México", countryCode: "MX" },
+		{ city: "Formosa", country: "Argentina", countryCode: "AR" },
 		{ city: "Buenos Aires", country: "Argentina", countryCode: "AR" },
 		{ city: "Bogotá", country: "Colombia", countryCode: "CO" },
 		{ city: "Madrid", country: "España", countryCode: "ES" },
-		{ city: "Ciudad de México", country: "México", countryCode: "MX" },
-		{ city: "Sonora", country: "México", countryCode: "MX"}
+		{ city: "Sonora", country: "México", countryCode: "MX" }
 	];
 
 	return (
 		<AppFrame>
-			<br></br>
-			<Paper elevation={4}>
+			<Paper elevation={1} className="mt mb pl pr">
 				<CityList
 					cities={cities}
 					onClickCity={onClickHandler}

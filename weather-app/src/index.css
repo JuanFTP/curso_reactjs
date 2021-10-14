@@ -27,3 +27,27 @@
 	background-color: rgba(255, 255, 255, 0.5);
 	transition-duration: 2000ms;
 }
+
+.pt {
+	padding-top: 24px;
+}
+
+.pb {
+	padding-bottom: 24px;
+}
+
+.pl {
+	padding-left: 24px;
+}
+
+.pr {
+	padding-right: 24px;
+}
+
+.mt {
+	margin-top: 24px;
+}
+
+.mb {
+	margin-bottom: 24px;
+}

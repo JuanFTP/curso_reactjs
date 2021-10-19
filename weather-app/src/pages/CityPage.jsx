@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import useCityPage from "./../hooks/useCityPage";
 import AppFrame from "../components/AppFrame";
@@ -9,16 +9,23 @@ import Weather from "./../components/Weather";
 import WeatherDetails from "./../components/WeatherDetails";
 import ForecastChart from "./../components/ForecastChart";
 import Forecast from "./../components/Forecast";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import useCityList from "./../hooks/useCityList";
+import { getCityCode } from "./../utils/utils";
+import { getCountryCodeNameByCountryCode } from "./../utils/serviceCities";
 
 const CityPage = () => {
 	const { city, countryCode } = useParams();
 	const { chartData, forecastItemList } = useCityPage(city, countryCode);
+	const cities = useMemo(() => ([{ city, countryCode }]), [city, countryCode]);
+	const { allWeather } = useCityList(cities);
+	const weather = allWeather[getCityCode(city, countryCode)];
 
-	// Valores globales de la ciudad en el momento actual, por obtener del API
-	const state = "clouds";
-	const temperature = 20;
-	const humidity = 80;
-	const wind = 5;
+	const humidity = weather && weather.humidity;
+	const wind = weather && weather.wind;
+	const country = getCountryCodeNameByCountryCode(countryCode);
+	const state = weather && weather.state;
+	const temperature = weather && weather.temperature;
 
 	return (
 		<AppFrame>
@@ -33,14 +40,22 @@ const CityPage = () => {
 					>
 						<CityInfo
 							city={city}
-							country={countryCode}
+							country={country}
 							temperature={temperature}
 						/>
 					</Grid>
 
 					<Grid item container justifyContent="center" xs={12}>
 						<Weather state={state} temperature={temperature} />
-						<WeatherDetails humidity={humidity} wind={wind} />
+						{
+							humidity && wind && <WeatherDetails humidity={humidity} wind={wind} />
+						}
+					</Grid>
+
+					<Grid item xs={12} className="loader">
+						{
+							!chartData && !forecastItemList && <LinearProgress></LinearProgress>
+						}
 					</Grid>
 
 					<Grid item xs={12}>

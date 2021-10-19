@@ -28,6 +28,10 @@
 	transition-duration: 2000ms;
 }
 
+.loader {
+	padding-top: 24px;
+}
+
 .pt {
 	padding-top: 24px;
 }

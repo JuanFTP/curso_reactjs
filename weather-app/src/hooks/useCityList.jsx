@@ -3,7 +3,7 @@ import axios from 'axios';
 import { getWeatherUrl } from "./../utils/urls";
 import getAllWeather from "./../utils/transform/getAllWeather";
 
-const useCityList = (cities) => {
+const useCityList = (cities, onSetAllWeather) => {
 	/*
 		Estructura que esperamos tenga allWeather
 		{
@@ -12,7 +12,7 @@ const useCityList = (cities) => {
 			[Formosa-Argentina]: {temperature: 10, state="sunny"}
 		}
 	*/
-	const [allWeather, setAllWeather] = useState({});
+
 	const [error, setError] = useState();
 
 	useEffect(() => {
@@ -22,7 +22,8 @@ const useCityList = (cities) => {
 			try {
 				const response = await axios.get(url);
 				const allWeatherAux = getAllWeather(response, city, countryCode);
-				setAllWeather(allWeather => ({ ...allWeather, ...allWeatherAux }));
+				//setAllWeather(allWeather => ({ ...allWeather, ...allWeatherAux }));
+				onSetAllWeather(allWeatherAux);
 			} catch (error) {
 				if (error.response) { // Errores que nos responde el server
 					setError("Ha ocurrido un error en el servidor del clima");
@@ -37,9 +38,9 @@ const useCityList = (cities) => {
 		cities.forEach(({ city, countryCode }) => {
 			setWeather(city, countryCode);
 		});
-	}, [cities]);
+	}, [cities, onSetAllWeather]);
 
-	return { allWeather, error, setError };
+	return { error, setError };
 }
 
 export default useCityList;

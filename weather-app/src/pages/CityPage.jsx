@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import { useParams } from "react-router-dom";
 import useCityPage from "./../hooks/useCityPage";
 import AppFrame from "../components/AppFrame";
 import Paper from "@material-ui/core/Paper";
@@ -14,12 +13,20 @@ import useCityList from "./../hooks/useCityList";
 import { getCityCode } from "./../utils/utils";
 import { getCountryCodeNameByCountryCode } from "./../utils/serviceCities";
 
-const CityPage = ({ onSetAllWeather, allWeather }) => {
-	const { city, countryCode } = useParams();
-	const { chartData, forecastItemList } = useCityPage(city, countryCode);
+const CityPage = ({ actions, data }) => {
+	const { allWeather, allChartData, allForecastItemList } = data;
+	const { onSetAllWeather, onSetChartData, onSetForecastItemList } = actions;
+	const { city, countryCode } = useCityPage(allChartData, allForecastItemList, onSetChartData, onSetForecastItemList);
+
 	const cities = useMemo(() => ([{ city, countryCode }]), [city, countryCode]);
-	useCityList(cities, onSetAllWeather);
-	const weather = allWeather[getCityCode(city, countryCode)];
+
+	useCityList(cities, allWeather, onSetAllWeather);
+
+	const cityCode = getCityCode(city, countryCode);
+
+	const weather = allWeather[cityCode];
+	const chartData = allChartData[cityCode];
+	const forecastItemList = allForecastItemList[cityCode];
 
 	const humidity = weather && weather.humidity;
 	const wind = weather && weather.wind;

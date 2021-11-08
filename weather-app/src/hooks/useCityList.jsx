@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import { getWeatherUrl } from "./../utils/urls";
 import getAllWeather from "./../utils/transform/getAllWeather";
+import { getCityCode } from "./../utils/utils";
 
-const useCityList = (cities, onSetAllWeather) => {
+const useCityList = (cities, allWeather, onSetAllWeather) => {
 	/*
 		Estructura que esperamos tenga allWeather
 		{
@@ -20,6 +21,9 @@ const useCityList = (cities, onSetAllWeather) => {
 			const url = getWeatherUrl({ city, countryCode });
 
 			try {
+				const propName = getCityCode(city, countryCode);
+				onSetAllWeather({ [propName]: {} });
+
 				const response = await axios.get(url);
 				const allWeatherAux = getAllWeather(response, city, countryCode);
 				//setAllWeather(allWeather => ({ ...allWeather, ...allWeatherAux }));
@@ -36,9 +40,11 @@ const useCityList = (cities, onSetAllWeather) => {
 		};
 
 		cities.forEach(({ city, countryCode }) => {
-			setWeather(city, countryCode);
+			if(!allWeather[getCityCode(city, countryCode)]) {
+				setWeather(city, countryCode);
+			} else { /*Lo pide si no está e la memoria*/ }
 		});
-	}, [cities, onSetAllWeather]);
+	}, [cities, onSetAllWeather, allWeather]);
 
 	return { error, setError };
 }

@@ -8,7 +8,7 @@ import getChartData from "../utils/transform/getChartData";
 import getForecastItemList from "../utils/transform/getForecastItemList";
 import { getCityCode } from "./../utils/utils";
 
-const useCityPage = (allChartData, allForecastItemList, onSetChartData, onSetForecastItemList) => {
+const useCityPage = (allChartData, allForecastItemList, actions) => {
 	const { city, countryCode } = useParams();
 	const cityCode = getCityCode(city, countryCode);
 
@@ -22,10 +22,22 @@ const useCityPage = (allChartData, allForecastItemList, onSetChartData, onSetFor
 				const days = daysAhead.map(d => moment().add(d, "d"));
 				
 				const dataAux = getChartData(days, data);
+				
+				actions({
+					type: "SET_CHART_DATA",
+					payload: {
+						[cityCode]: dataAux
+					}
+				});
+				
 				const forecastItemListAux = getForecastItemList(days, data);
 
-				onSetChartData({ [cityCode]: dataAux });
-				onSetForecastItemList({ [cityCode]: forecastItemListAux });
+				actions({
+					type: "SET_FORECAST_ITEM_LIST",
+					payload: {
+						[cityCode]: forecastItemListAux
+					}
+				});
 			} catch (error) {
 				console.log("Ocurrió un error");
 			}
@@ -34,7 +46,7 @@ const useCityPage = (allChartData, allForecastItemList, onSetChartData, onSetFor
 		if((allChartData && allForecastItemList) && !allChartData[cityCode] && !allForecastItemList[cityCode]) {
 			getForecast();
 		}
-	}, [city, countryCode, allChartData, allForecastItemList, onSetChartData, onSetForecastItemList]);
+	}, [city, countryCode, cityCode, actions, allChartData, allForecastItemList]);
 
 	return { city, countryCode };
 };

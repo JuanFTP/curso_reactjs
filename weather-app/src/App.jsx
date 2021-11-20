@@ -5,15 +5,15 @@ import MainPage from "./pages/MainPage";
 import CityPage from "./pages/CityPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
-const App = () => {
-	const initialState = {
-		allWeather: {},
-		allChartData: {},
-		allForecastItemList: {}
-	};
+const initialState = {
+	allWeather: {},
+	allChartData: {},
+	allForecastItemList: {}
+};
 
+const App = () => {
 	// action { type: "XXX", payload: "XXX"}
-	const reducer = (state, action) => {
+	const reducer = React.useCallback((state, action) => {
 		switch (action.type) {
 			case "SET_ALL_WEATHER":
 				const weatherCity = action.payload;
@@ -30,7 +30,7 @@ const App = () => {
 			default:
 				return state;
 		}
-	};
+	}, []);
 
 	const [state, dispatch] = useReducer(reducer, initialState);
 

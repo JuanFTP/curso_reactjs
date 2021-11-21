@@ -1,59 +1,34 @@
-import React, { useReducer } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import WelcomePage from "./pages/WelcomePage";
 import MainPage from "./pages/MainPage";
 import CityPage from "./pages/CityPage";
 import NotFoundPage from "./pages/NotFoundPage";
-
-const initialState = {
-	allWeather: {},
-	allChartData: {},
-	allForecastItemList: {}
-};
+import { WeatherContext } from "./WeatherContext";
 
 const App = () => {
-	// action { type: "XXX", payload: "XXX"}
-	const reducer = React.useCallback((state, action) => {
-		switch (action.type) {
-			case "SET_ALL_WEATHER":
-				const weatherCity = action.payload;
-				const newAllWeather = { ...state.allWeather, ...weatherCity };
-				return { ...state, allWeather: newAllWeather };
-			case "SET_CHART_DATA":
-				const chartDataCity = action.payload;
-				const newAllChartData = { ...state.allCharData, ...chartDataCity };
-				return { ...state, allChartData: newAllChartData };
-			case "SET_FORECAST_ITEM_LIST":
-				const forecastItemListCity = action.payload;
-				const newAllForecastItemListCity = { ...state.allForecastItemList, ...forecastItemListCity };
-				return { ...state, allForecastItemList: newAllForecastItemListCity };
-			default:
-				return state;
-		}
-	}, []);
-
-	const [state, dispatch] = useReducer(reducer, initialState);
-
 	return (
-		<Router>
-			<Switch>
-				<Route exact path="/">
-					<WelcomePage />
-				</Route>
+		<WeatherContext>
+			<Router>
+				<Switch>
+					<Route exact path="/">
+						<WelcomePage />
+					</Route>
 
-				<Route exact path="/main">
-					<MainPage data={state} actions={dispatch} />
-				</Route>
+					<Route exact path="/main">
+						<MainPage />
+					</Route>
 
-				<Route path="/city/:countryCode/:city">
-					<CityPage data={state} actions={dispatch} />
-				</Route>
+					<Route path="/city/:countryCode/:city">
+						<CityPage />
+					</Route>
 
-				<Route>
-					<NotFoundPage />
-				</Route>
-			</Switch>
-		</Router>
+					<Route>
+						<NotFoundPage />
+					</Route>
+				</Switch>
+			</Router>
+		</WeatherContext>
 	);
 };
 

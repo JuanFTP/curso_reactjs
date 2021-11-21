@@ -5,7 +5,7 @@ import CityList from "./../components/CityList";
 import Paper from "@material-ui/core/Paper";
 import { getCities } from "./../utils/serviceCities";
 
-const MainPage = ({ actions, data }) => {
+const MainPage = () => {
 	const history = useHistory();
 	const onClickHandler = React.useCallback((city, countryCode) => {
 		// history.push permite alterar la URL del navegador por programación
@@ -16,8 +16,6 @@ const MainPage = ({ actions, data }) => {
 		<AppFrame>
 			<Paper elevation={1} className="mt mb pl pr">
 				<CityList
-					data={data}
-					actions={actions}
 					cities={getCities()}
 					onClickCity={onClickHandler}
 				></CityList>

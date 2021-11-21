@@ -12,8 +12,11 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import useCityList from "./../hooks/useCityList";
 import { getCityCode } from "./../utils/utils";
 import { getCountryCodeNameByCountryCode } from "./../utils/serviceCities";
+import { useWeatherDispatchContext, useWeatherStateContext } from "./../WeatherContext";
 
-const CityPage = ({ actions, data }) => {
+const CityPage = () => {
+	const actions = useWeatherDispatchContext();
+	const data = useWeatherStateContext();
 	const { allWeather, allChartData, allForecastItemList } = data;
 	const { city, countryCode } = useCityPage(allChartData, allForecastItemList, actions);
 

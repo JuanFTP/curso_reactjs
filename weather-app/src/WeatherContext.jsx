@@ -46,16 +46,18 @@ const useWeatherDispatchContext = () => {
 
 	if(!dispatch) {
 		throw Error("Must set dispatch provider");
+	} else {
+		return dispatch;
 	}
-	return dispatch;
 }
 
 const useWeatherStateContext = () => {
 	const state = useContext(WeatherStateContext);
 	if(!state) {
 		throw Error("Must set state provider");
+	} else {
+		return state;
 	}
-	return state;
 }
 
 export {

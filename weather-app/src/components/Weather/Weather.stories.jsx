@@ -1,13 +1,27 @@
 import React from "react";
 import Weather from "./Weather";
 
-const historyWeather = {
+export default {
 	title: "Weather",
-	component: Weather
+	component: Weather,
+	argsType: {
+		temperature: {
+			control: {
+				type: "text"
+			}
+		},
+		state: {
+			control: {
+				type: "text"
+			}
+		}
+	}
 };
 
-export default historyWeather;
+const Template = (args) => <Weather {...args} />;
 
-export const WeatherSunny = () => <Weather temperature={28} state="clear" />;
+export const WeatherCloud = Template.bind({});
+WeatherCloud.args = { temperature: 28, state: "clear" };
 
-export const WeatherCloud = () => <Weather temperature={15} state="clouds" />;
+export const WeatherSunny = Template.bind({});
+WeatherSunny.args = { temperature: 15, state: "clouds" };

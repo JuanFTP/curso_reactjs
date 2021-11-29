@@ -2,13 +2,24 @@ import React from "react";
 import "typeface-roboto";
 import CityInfo from "./CityInfo";
 
-const historyCityInfo = {
+export default {
 	title: "CityInfo",
-	component: CityInfo
+	component: CityInfo,
+	argsType: {
+		city: {
+			control: {
+				type: "text"
+			}
+		},
+		country: {
+			control: {
+				type: "text"
+			}
+		}
+	}
 };
 
-export default historyCityInfo;
+const Template = (args) => <CityInfo {...args}/>
 
-export const CityExample = () => (
-	<CityInfo city={"Buenos Aires"} country={"Argentina"}></CityInfo>
-);
+export const CityExample = Template.bind({});
+CityExample.args = {city: "Buenos Aires", country: "Argentina"};

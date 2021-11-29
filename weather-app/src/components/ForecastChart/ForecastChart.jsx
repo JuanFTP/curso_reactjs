@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import {
 	ResponsiveContainer,
@@ -12,11 +12,13 @@ import {
 } from "recharts";
 
 const ForecastChart = ({ data }) => {
+	const marginsLineChart = useMemo(() => ({ top: 40, bottom: 40, left: 5, right: 5 }), []);
+
 	return (
 		<div>
 			<ResponsiveContainer height={320} width={"95%"}>
 				<LineChart
-					margin={{ top: 40, bottom: 40, left: 5, right: 5 }}
+					margin={marginsLineChart}
 					data={data}
 				>
 					<XAxis dataKey="dayHour"></XAxis>

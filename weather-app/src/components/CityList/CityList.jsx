@@ -8,15 +8,12 @@ import ListItem from "@material-ui/core/ListItem";
 import CityInfo from "./../CityInfo";
 import Weather from "./../Weather";
 import { getCityCode } from './../../utils/utils';
+import { useWeatherDispatchContext, useWeatherStateContext } from "./../../WeatherContext";
 
-// renderCityAndCountry se va a converir en una función que retorna otra función
-const renderCityAndCountry = (eventOnClickCity) => (cityAndCountry, weather) => {
-	const { city, countryCode, country } = cityAndCountry;
-
+const CityListItem = React.memo(({ city, countryCode, country, weather, eventOnClickCity }) => {
 	return (
 		<ListItem
 			button
-			key={getCityCode(city, countryCode)}
 			onClick={() => eventOnClickCity(city, countryCode)}
 		>
 			<Grid container justifyContent="center" alignItems="center">
@@ -29,13 +26,20 @@ const renderCityAndCountry = (eventOnClickCity) => (cityAndCountry, weather) => 
 			</Grid>
 		</ListItem>
 	);
+});
+
+// renderCityAndCountry se va a converir en una función que retorna otra función
+const renderCityAndCountry = (eventOnClickCity) => (cityAndCountry, weather) => {
+	const { city, countryCode } = cityAndCountry;
+	return <CityListItem key={getCityCode(city, countryCode)} eventOnClickCity={eventOnClickCity} weather={weather} {...cityAndCountry} />
 };
 
 // cities: es un array, y en cada item tiene que tener la ciudad pero además, el country
-const CityList = ({ cities, onClickCity, actions, data }) => {
-	const { onSetAllWeather } = actions;
+const CityList = ({ cities, onClickCity }) => {
+	const actions = useWeatherDispatchContext();
+	const data = useWeatherStateContext();
 	const { allWeather } = data;
-	const { error, setError } = useCityList(cities, allWeather, onSetAllWeather);
+	const { error, setError } = useCityList(cities, allWeather, actions);
 
 	return (
 		<div>
@@ -62,4 +66,4 @@ CityList.propTypes = {
 	onClickCity: PropTypes.func.isRequired
 };
 
-export default CityList;
+export default React.memo(CityList);

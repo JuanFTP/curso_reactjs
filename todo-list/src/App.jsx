@@ -6,18 +6,30 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 const initialValue = {
-	items: [
-		{ item: "Uno" },
-		{ item: "Dos" },
-		{ item: "Tres" },
-		{ item: "Cuatro" },
-		{ item: "Cinco" }
-	]
+	items: []
 };
 
 const reducer = (state = initialValue, action) => {
-	return state;
+	switch (action.type) {
+		case 'ADD_ITEM':
+			return { ...state, items: [...state.items, ...action.payload] };
+		case 'REMOVE_ITEM':
+			return { ...state, items: state.items.filter(i => i.item !== action.payload) };
+		default:
+			return state;
+	}
 }
+
+/*
+* NOTE Store
+* ¿Qué tipo de estado guarda el store?
+* Guarda un tipo de estado global que se altera por los actions y
+* se modifica por los payloads que llegan por los actions
+*
+* ¿Qué me va interesar guardar?
+* - Regularmente las cosas que vienen del servidor.
+* - Cosas que requieren mucho cómputo
+*/
 
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 

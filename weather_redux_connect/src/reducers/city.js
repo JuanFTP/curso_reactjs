@@ -32,7 +32,7 @@ export const city = (state = {}, action) => {
 			* la propiedad city con el valor pasado en el
 			* payload
 			*/
-			return { ...state, city: action.payload };
+			return action.payload;
 		default: {
 			return state;
 		}

@@ -5,7 +5,7 @@ import ForecastItem from './ForecastItem';
 import './styles.css';
 
 const renderForecastItemDays = (forecastData) => {
-	return forecastData.map(forecast => (
+	return forecastData.map((forecast) => (
 		<ForecastItem
 			key={`${forecast.weekDay}${forecast.hour}`}
 			weekDay={forecast.weekDay}

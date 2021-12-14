@@ -25,7 +25,7 @@ import { SET_CITY } from "./../actions/index";
 */
 export const city = (state = {}, action) => {
 	switch (action.type) {
-		case SET_CITY:
+		case SET_CITY: {
 			/*
 			* NOTE composición del nuevo estado
 			* se descompone el estado y se le suma o actualiza
@@ -33,7 +33,7 @@ export const city = (state = {}, action) => {
 			* payload
 			*/
 			return action.payload;
-		default: {
+		} default: {
 			return state;
 		}
 	};

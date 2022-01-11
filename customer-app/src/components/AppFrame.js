@@ -7,9 +7,8 @@ const AppFrame = ({ header, body, footer }) => {
 		<div>
 			<div className="app-frame">
 				<AppHeader title={header} />
-				<div>{body}</div>
-				<div>Aplicación simple de ejemplo</div>
-				<div>{footer}</div>
+				<div className="app-body">{body}</div>
+				<div className="app-footer">{footer}</div>
 			</div>
 		</div>
 	);
@@ -19,3 +18,5 @@ AppFrame.propTypes = {
 	header: PropTypes.string.isRequired,
 	body: PropTypes.element.isRequired
 }
+
+export default AppFrame;

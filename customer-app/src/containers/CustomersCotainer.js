@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import AppFrame from './../components/AppFrame';
 import CustomersList from './../components/CustomersList';
 import CustomersActions from './../components/CustomersActions';
+import { fetchCustomers } from '../actions/fetchCustomers';
 
 let xList = [{
 	dni: "2763281177",
@@ -16,6 +19,10 @@ let xList = [{
 }];
 
 class CustomersContainer extends Component {
+
+	componentDidMount() {
+		this.props.fetchCustomers();
+	}
 
 	handleAddNew = () => {
 		this.props.history.push("/customers/new");
@@ -42,4 +49,14 @@ class CustomersContainer extends Component {
 	};
 }
 
-export default withRouter(CustomersContainer);
+CustomersContainer.propTypes = {
+	fetchCustomers: PropTypes.func.isRequired
+};
+
+const mapDispatchToProps = (dispatch) => (
+	{
+		fetchCustomers: () => dispatch(fetchCustomers())
+	}
+);
+
+export default withRouter(connect(null, mapDispatchToProps)(CustomersContainer));

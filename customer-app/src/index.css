@@ -15,7 +15,7 @@
 	--delete: #e76f51;
 	--success: #2a9d8f;
 	--warning: #e9c46a;
-	--shadow-in-out-all: 0px 0px 8px 0px rgba(0, 0, 0, 0.48);
+	--shadow-in-out-all: 0px 0px 8px 0px rgba(0, 0, 0, 0.24);
 	--t-default: all ease 250ms;
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import AppFrame from './../components/AppFrame';
 import CustomersList from './../components/CustomersList';
 import CustomersActions from './../components/CustomersActions';
@@ -16,11 +17,15 @@ let xList = [{
 
 class CustomersContainer extends Component {
 
+	handleAddNew = () => {
+		this.props.history.push("/customers/new");
+	}
+
 	renderBody = (customers) => (
 		<div className="table-content">
 			<CustomersList
 				customers={customers}
-				urlPath="customer/">
+				urlPath="customers/">
 			</CustomersList>
 			<br></br>
 			<br></br>
@@ -37,4 +42,4 @@ class CustomersContainer extends Component {
 	};
 }
 
-export default CustomersContainer;
+export default withRouter(CustomersContainer);

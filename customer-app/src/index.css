@@ -10,8 +10,13 @@
 	--dark: #222222;
 	--white: #FFFFFF;
 	--black: #000000;
-	--shadow-in-out-all: 0px 0px 8px 0px rgba(0, 0, 0, 1);
-	--t-default: all ease-in-out 250ms;
+
+	--modify: #f4a261;
+	--delete: #e76f51;
+	--success: #2a9d8f;
+	--warning: #e9c46a;
+	--shadow-in-out-all: 0px 0px 8px 0px rgba(0, 0, 0, 0.48);
+	--t-default: all ease 250ms;
 }
 
 body {
@@ -50,21 +55,32 @@ body {
 	font-weight: bold;
 	border: 0;
 	outline: none;
+	cursor: pointer;
 }
 
-.btn.btn-primary {
+.btn:hover {
+	transition: var(--t-default);
+	box-shadow: var(--shadow-in-out-all);
+}
+
+.btn-primary {
 	color: var(--white);
 	background-color: var(--primary);
 }
 
-.btn.btn-action {
+.btn-action {
 	color: var(--white);
 	background-color: var(--dark);
 }
 
-.btn:hover.btn-primary {
-	transition: var(--t-default);
-	box-shadow: var(--shadow-in-out-all);
+.btn-edit {
+	color: var(--white);
+	background-color: var(--modify);
+}
+
+.btn-del {
+	color: var(--white);
+	background-color: var(--delete);
 }
 
 .customer-list .customer-list-item {
@@ -78,4 +94,9 @@ body {
 	color: inherit;
 	padding: 16px 24px;
 	display: inline-block;
+}
+
+.customer-list .customer-list-item .field a {
+	text-decoration: none;
+	color: inherit;
 }

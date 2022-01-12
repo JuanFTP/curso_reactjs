@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const CustomerListItem = ({ name, dni, editAction, delAction, urlPath }) => {
@@ -10,10 +10,18 @@ const CustomerListItem = ({ name, dni, editAction, delAction, urlPath }) => {
 					<Link to={`${urlPath}${dni}`}>{name}</Link>
 				</div>
 				<div className="field">
-					<Link to={`${urlPath}${dni}/edit`}>{editAction}</Link>
+					<Link to={`${urlPath}${dni}/edit`}>
+						<button className="btn btn-edit">
+							{editAction}
+						</button>
+					</Link>
 				</div>
 				<div className="field">
-					<Link to={`${urlPath}${dni}/del`}>{delAction}</Link>
+					<Link to={`${urlPath}${dni}/del`}>
+						<button className="btn btn-del">
+							{delAction}
+						</button>
+					</Link>
 				</div>
 			</div>
 		</div>
@@ -28,4 +36,4 @@ CustomerListItem.propTypes = {
 	delAction: PropTypes.string.isRequired
 };
 
-export default CustomerListItem;
+export default withRouter(CustomerListItem);

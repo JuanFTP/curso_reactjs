@@ -6,6 +6,7 @@ import AppFrame from './../components/AppFrame';
 import CustomersList from './../components/CustomersList';
 import CustomersActions from './../components/CustomersActions';
 import { fetchCustomers } from '../actions/fetchCustomers';
+import { getCustomers } from './../selectors/customers';
 
 class CustomersContainer extends Component {
 
@@ -47,8 +48,8 @@ CustomersContainer.defaultProps = {
 	customers: []
 };
 
-const mapStateToProps = state => ({
-	customers: state.customers
+const mapStateToProps = (state) => ({
+	customers: getCustomers(state)
 });
 
 export default withRouter(connect(mapStateToProps, { fetchCustomers })(CustomersContainer));

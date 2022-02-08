@@ -39,7 +39,7 @@ const toUpper = (value) => value && value.toUpperCase();
 
 const toLower = (value) => value && value.toLowerCase();
 
-const onlyGrow = (value, previusValue, values) => value && previusValue && (value > previusValue ? value : previusValue);
+const onlyGrow = (value, previusValue, values) => (value && (!previusValue ? value : (value > previusValue ? value : previusValue)));
 
 const MyField = ({ input, meta, type, label, name, placeholder }) => (
 	<div className="form-control">

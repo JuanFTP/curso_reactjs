@@ -1,0 +1,142 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+:root {
+	--primary: #280be9;
+	--light: #F4F4F4;
+	--dark: #222222;
+	--white: #FFFFFF;
+	--black: #000000;
+
+	--modify: #f4a261;
+	--delete: #e76f51;
+	--success: #2a9d8f;
+	--warning: #e9c46a;
+	--shadow-in-out-all: 0px 0px 8px 0px rgba(0, 0, 0, 0.24);
+	--t-default: all ease 250ms;
+}
+
+body {
+	font-family: sans-serif;
+}
+
+.app-frame {
+	height: 100vh;
+	padding: 2em;
+	background-color: var(--light);
+}
+
+.app-header {
+	height: 56px;
+	line-height: 56px;
+	padding: 0px 1em;
+	color: var(--white);
+	background-color: var(--primary);
+}
+
+.app-body {
+	padding: 2em;
+}
+
+.app-footer {
+	padding: 2em;
+	color: var(--white);
+	background-color: var(--dark);
+}
+
+/*Buttons*/
+.btn {
+	display: inline-block;
+	padding: 7px 21px;
+	text-transform: uppercase;
+	font-weight: bold;
+	border: 0;
+	outline: none;
+	cursor: pointer;
+	margin-top: 8px;
+	margin-right: 8px;
+}
+
+/*NOTE Implement disable indicator*/
+
+.btn:hover {
+	transition: var(--t-default);
+	box-shadow: var(--shadow-in-out-all);
+}
+
+.btn-primary {
+	color: var(--white);
+	background-color: var(--primary);
+}
+
+.btn-action {
+	color: var(--white);
+	background-color: var(--dark);
+}
+
+.btn-edit {
+	color: var(--white);
+	background-color: var(--modify);
+}
+
+.btn-del {
+	color: var(--white);
+	background-color: var(--delete);
+}
+
+.customer-list .customer-list-item {
+	display: grid;
+	width: 100%;
+	grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+.customer-list .customer-list-item .field {
+	color: inherit;
+	padding: 16px 24px;
+	display: inline-block;
+}
+
+.customer-list .customer-list-item .field a {
+	text-decoration: none;
+	color: inherit;
+}
+
+/*Component FORM*/
+.form {
+	display: block;
+	min-width: 420px;
+}
+
+.form .form-control {
+	display: inline-block;
+	overflow: hidden;
+	height: 84px;
+	margin: 8px 8px;
+}
+
+.form .form-control label {
+	font-weight: 600;
+	display: block;
+	font-size: 1em;
+}
+
+.form .form-control input {
+	height: 48px;
+	min-width: 240px;
+	padding: 0px 12px;
+	border: none;
+	outline: none;
+	display: block;
+}
+
+.form .form-control input+span {
+	font-weight: 600;
+	height: 8px;
+	width: 100%;
+	font-size: 0.75em;
+	color: red;
+}

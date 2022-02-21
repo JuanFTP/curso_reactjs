@@ -8,6 +8,7 @@ import CustomerEdit from './../components/CustomerEdit';
 import CustomerData from './../components/CustomerData';
 import { fetchCustomers } from './../actions/fetchCustomers';
 import { updateCustomer } from './../actions/updateCustomer';
+import { deleteCustomer } from './../actions/deleteCustomer';
 import { SubmissionError } from 'redux-form';
 
 class CustomerConstainer extends Component {
@@ -19,7 +20,6 @@ class CustomerConstainer extends Component {
 	}
 
 	handleSubmit = (values) => {
-		console.log("IMPACT TO", JSON.stringify(values));
 		const { id } = values;
 		return this.props.updateCustomer(id, values).then(r => {
 			if (r.payload && r.payload.error) {
@@ -37,22 +37,39 @@ class CustomerConstainer extends Component {
 		this.props.history.goBack();
 	};
 
+	handleOnDelete = (id) => {
+		this.props.deleteCustomer(id).then(p => {
+			this.props.history.goBack();
+		});
+	}
+
+	// NOTE Doble negación por si no existe, lo vuelve un boleano y luego lo niega por que los boleanos son true por defecto
+	renderCustomerControl = (isEdit, isDelete) => {
+		if (this.props.customer) {
+			const CustomerControl = isEdit ? CustomerEdit : CustomerData;
+			return <CustomerControl
+				{...this.props.customer}
+				onSubmit={this.handleSubmit}
+				onSubmitSuccess={this.handleOnSubmitSuccess}
+				onBack={this.handleOnBack}
+				isDeleteAllow={!!isDelete}
+				onDelete={this.handleOnDelete}
+			/>
+		} else {
+			return null;
+		}
+	}
+
 	// Ruteo en subnivel
 	renderBody = () => (
 		<Route path="/customers/:dni/edit" children={
-			({ match }) => {
-				if (this.props.customer) {
-					const CustomerControl = match ? CustomerEdit : CustomerData;
-					return <CustomerControl
-						{...this.props.customer}
-						onSubmit={this.handleSubmit}
-						onSubmitSuccess={this.handleOnSubmitSuccess}
-						onBack={this.handleOnBack}
-					/>
-				} else {
-					return null;
-				}
-			}
+			({ match: isEdit }) => (
+				<Route path="/customers/:dni/del" children={
+					({ match: isDelete }) => (
+						this.renderCustomerControl(isEdit, isDelete)
+					)
+				} />
+			)
 		} />
 	);
 
@@ -71,7 +88,8 @@ CustomerConstainer.propTypes = {
 	dni: PropTypes.string.isRequired,
 	customer: PropTypes.object,
 	fetchCustomers: PropTypes.func.isRequired,
-	updateCustomer: PropTypes.func.isRequired
+	updateCustomer: PropTypes.func.isRequired,
+	deleteCustomer: PropTypes.func.isRequired
 };
 
 // Cuando usamos props, se cargan los params del componente
@@ -81,5 +99,6 @@ const mapStateToProps = (state, props) => ({
 
 export default withRouter(connect(mapStateToProps, {
 	fetchCustomers,
-	updateCustomer
+	updateCustomer,
+	deleteCustomer
 })(CustomerConstainer));

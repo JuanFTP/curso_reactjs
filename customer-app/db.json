@@ -1,34 +1,16 @@
 {
   "customers": [
     {
-      "id": "2763281177",
-      "dni": "2763281172",
-      "name": "JUAN FRANCISCO TEMICH",
-      "age": 27
+      "name": "JUAN FRANCISCO TEMICH PONCIANO",
+      "dni": "8273661188",
+      "age": 27,
+      "id": 1
     },
     {
-      "id": "2763281347",
-      "dni": "2763281347",
-      "name": "IVÁN CHIGUIL",
-      "age": 28
-    },
-    {
-      "id": "2763281322",
-      "dni": "2763281322",
-      "name": "ÓSCAR ÓBIL ZÚÑIGA",
-      "age": 28
-    },
-    {
-      "id": "2763281210",
-      "dni": "2763281210",
       "name": "CHRISTIAN ALONSO ARANDA",
-      "age": 28
-    },
-    {
-      "id": "30000001",
-      "dni": "30000001",
-      "name": "FACUNDO 2",
-      "age": 30
+      "dni": "5689785412",
+      "age": 27,
+      "id": 2
     }
   ]
 }

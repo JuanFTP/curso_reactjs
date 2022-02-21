@@ -21,3 +21,30 @@ export const apiPut = (url, id, obj) =>
 
 			return r;
 		});
+
+export const apiPost = (url, obj) => () =>
+	fetch(`${url}`, {
+		method: 'POST',
+		body: JSON.stringify(obj),
+		headers: new Headers({ 'Content-Type': 'application/json' })
+	})
+		.then(v => v.json())
+		.then(r => {
+			if (r.error) {
+				return new Error(r.validation)
+			}
+			return r;
+		});
+
+export const apiDel = (url, id) => () =>
+	fetch(`${url}/${id}`, {
+		method: 'DELETE',
+		headers: new Headers({ 'Content-Type': 'application/json' })
+	})
+		.then(v => v.json())
+		.then(r => {
+			if (r.error) {
+				return new Error(r.validation)
+			}
+			return id;
+		});

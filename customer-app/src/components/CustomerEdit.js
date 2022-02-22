@@ -4,6 +4,8 @@ import { reduxForm, Field } from 'redux-form';
 import { setPropsAsInitial } from './../helpers/setPropsAsInitial';
 import CustomersActions from './CustomersActions';
 import { Prompt } from 'react-router-dom';
+import { accessControl } from '../helpers/accessControl';
+import { CUSTOMER_EDIT, CUSTOMER_VIEW } from '../constants/permissions';
 
 /*
 	NOTE Las validaciones locales o por field tienen prioridad sobre las globales
@@ -130,10 +132,10 @@ CustomerEdit.propTypes = {
 	onBack: PropTypes.func.isRequired
 };
 
-const CustomerEditForm = reduxForm(
-	{
-		form: "customer-edit",
-		validate
-	})(CustomerEdit);
+const CustomerEditForm = reduxForm({
+	form: "customer-edit",
+	validate
+})(CustomerEdit);
 
-export default setPropsAsInitial(CustomerEditForm);
+// NOTE Envolvemos al componente con el HOC y le pasamos los permisos requeridos para que se visualice
+export default accessControl([CUSTOMER_EDIT])(setPropsAsInitial(CustomerEditForm));
